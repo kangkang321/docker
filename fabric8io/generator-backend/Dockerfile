@@ -8,5 +8,10 @@ COPY jenkins-1.26.pom /root/.m2/repository/org/jenkins-ci/jenkins/1.26/jenkins-1
 RUN cd fabric8-generator &&\
     mvn -B clean install -Dmaven.test.skip=true &&\
     cd ../generator-backend &&\
-    mvn -B clean install -Dmaven.test.skip=true
+    mvn -B clean install -Dmaven.test.skip=true &&\
+	cd .. &&\
+	mv generator-backend/target/generator-swarm.jar generator-swarm.jar &&\
+	rm -rf generator-backend &&\
+	rm -rf fabric8-generator &&\
+    rm -rf /root/.m2/repository	
 
